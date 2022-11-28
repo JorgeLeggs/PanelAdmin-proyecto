@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./CSS/login.css" />
+    <link rel="stylesheet" href="./CSS/style.css">
+
+    <link rel="stylesheet" href="./CSS/bootstrap.css" />
+  </head>
+  <body >
+    <style>
+      ::-webkit-scrollbar{
+        display: none;
+      }
+
+    </style> 
+
+
+    
+    <!--Fondo-->
+    <div class="fondo">
+        
+    </div>
+
+
+    <!------------------Login-------------------> 
+    <div class=" vh-100 d-flex justify-content-center align-items-center">
+      <div class="carta col-md-4 p-5 border rounded-5 bg-white">
+        
+        <div class="logo">
+          <img width="120px" height="120px" class="logopb mb-3"
+          src="./recursos/logos/pblogo.png">
+        </div>
+        <form id="formulario_login" class="formulario_login">
+          <h2 class="text-center mb-4">Iniciar sesión</h2>
+          <div class="mb-4">
+            <div class="login-correo" id="grupo-correo_login">
+            <label for="exampleInputEmail1" class="registro_form-label">Correo</label>
+            <input
+              type="email"
+              class="form-control"
+              id="correo_login"
+              aria-describedby="emailHelp"
+              name="correo_login"
+            />
+            <p id="log_correo" class="input_error">Ingresa un correo válido</p>
+          </div>
+          </div>
+          <div class="mb-4">
+            <div class="login-contraseña" id="grupo-contraseña">
+            <label for="exampleInputPassword1" class="registro_form-label"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="contraseña"
+              name="contraseña"
+            />
+            <p id="log_password" class="input_error">
+              Ingresa tu contraseña ó tu contraseña es incorrecta
+            </p>
+            </div>
+          </div>
+          <p class="small">
+            <a class="text-primary" href="./forgot-password.html">¿Olvidaste tu contraseña?</a>
+          </p>
+          <div class="d-grid">
+            <a href="./principal.html" class="boton boton-color">Iniciar sesión </a>
+          </div>
+        </form>
+        <div class="mt-3">
+          <p class="text-center">
+            ¿No tienes una cuenta?
+            <a href="./registro.html" class="text-primary fw-bold">Registrate</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <<!------------------Scripts------------------>
+    <script
+      src="./recursos/bootstrap-js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+    src="./js/Validacion_login.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  
+  <script type="module" src="./js/mapa.js"></script>
+  <script src="./js/login.js"></script>
+
+  </body>
+</html>

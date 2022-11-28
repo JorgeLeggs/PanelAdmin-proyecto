@@ -1,0 +1,209 @@
+:root {
+    --principal: #f9c017;
+    --hover-boton:#c39716;
+    --sombra:#036e94;
+    --gris: #6b6a75;
+    --negro: #000000;
+    --blanco: #ffffff;
+    --azul_marino: #091e3e;
+    --formulario:#faf5f5;
+    --rojo:#ff0000;
+  }
+
+
+  /*--------------------------Dashboard--------------------*/
+
+  .menu-lateral{
+    background-color: var(--principal);
+    background-size: cover;
+    
+  }
+
+.titulo{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+
+
+.contenedor-carta{
+    display: flex;
+    
+    
+}
+
+.contenedor-info{
+    
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 10%;
+    
+}
+
+
+/*---------------------------Mapa-----------------------*/
+.controles-mapa{
+    display: flex;
+    justify-content: right;
+}
+
+.actualizar{
+    border: none;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: 5px;
+    background-color: var(--principal);
+}
+.contenedor-mapa{
+    display: flex;
+      justify-content: center;
+      margin-right: 30px;
+  }
+  
+  #map {
+      
+      
+      height: 520px;
+      width: 620px;
+      position: relative;
+    }
+  
+  
+  .combo{
+    padding: 8px;
+    border-radius: 15px;
+  }
+  
+  .container-combo{
+    
+    display: flex;
+    justify-content: right;
+    margin: 30px;
+  }
+
+  
+/*--------------------Botones----------------*/
+.boton{
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    border:none;
+    padding-left:0.75rem; ;
+    padding-right: 0.75rem;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    border-radius: 0.375rem;
+
+}
+
+.boton-color{
+    background-color:#f9c017;
+    color: var(--negro);
+    font-weight: bold;
+
+}
+
+
+.boton-color:hover {
+    
+    background-color: var(--hover-boton);
+    color: var(--negro);
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  /*---------------Errores------------------*/
+.input_error{
+    font-size: 14px;
+    display: none;
+}
+.input_error_activo{
+    display: block;
+    color: var(--rojo);
+}
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------Scrollbar------------------ */
+
+::-webkit-scrollbar{
+    
+    width: 20px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+    
+    background-color: var(--principal); 
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--hover-boton);
+}
+
+
+/*------- validacion ---------*/
+.registro-incorrecto .registro_form-label{
+    color:#bb2929;
+}
+.registro-incorrecto .form-control{
+    color: #bb2929;
+    border-color: #bb2929;
+}
+.campo_alerta{
+    width: 200px;
+    background-color: #bb2929;
+    color: white;
+    text-align: center;
+    margin: auto;
+    display: none;
+    margin-bottom: 20px;
+}
+.campo_alerta-activo{
+    display: block;
+}
+.campo_exitoso{
+    width: 200px;
+    background-color: #1ed12d;
+    color: white;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    display: none;
+}
+.campo_exitoso-activo{
+    display: block;
+}
+  

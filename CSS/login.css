@@ -1,0 +1,33 @@
+@import url(./style.css);
+
+/*----------------------Login---------------------*/
+
+.logo{
+    text-align: center;
+}
+
+
+  
+
+body{
+    background-image: url(../recursos/img/camion-blur.jpg);
+    background-size: 100%;
+    background-repeat:repeat-y;
+    backdrop-filter: blur(10px);
+    background-size:cover;
+}
+
+.fondo-password{
+    background: url("../recursos/img/forgot-password.gif");
+    background-position: center;
+    background-size: cover;
+
+}
+
+.contenedor_boton{
+    margin-top: 80px;
+    margin-bottom: 20px;
+    
+}
+
+

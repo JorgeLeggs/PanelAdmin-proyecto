@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-----Hojas de estilo----->
+    <link rel="preload" href="./CSS/bootstrap.css" />
+    <link rel="preload" href="./CSS/login.css" />
+    <link rel="stylesheet" href="./CSS/bootstrap.css" />
+    <link rel="stylesheet" href="./CSS/login.css" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+
+    <title>Registrate</title>
+  </head>
+  <body>
+    <!---------------------------------------------boton regresar----------------------------------------------------->
+    <div class="contenedor_boton">
+      <a class="p-3 offset-1 boton boton-color" href="./index.html">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-arrow-left"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="#ffffff"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <line x1="5" y1="12" x2="11" y2="18" />
+          <line x1="5" y1="12" x2="11" y2="6" />
+        </svg>
+      </a>
+    </div>
+    <!--------------------------------------------registro----------------------------------------------------->
+
+    <div class="d-flex justify-content-center align-items-center mb-5">
+      <div class="carta col-md-5 p-5 border rounded-5 bg-white">
+        <h2 class="text-center mb-4">Ingresa tus datos</h2>
+        <form
+          name="formulario_registro"
+          class="formulario_registro"
+          id="formulario_registro"
+        >
+          <div class="mb-3">
+            <div class="registro" id="grupo-nombre">
+              <label for="Nombre" class="registro_form-label">Nombre</label>
+
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                aria-describedby="emailHelp"
+                name="nombre"
+                placeholder="Escribe tu nombre"
+                required
+              />
+              <p id="registro_error " class="input_error">Escribe tu nombre</p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="registro" id="grupo-apellido">
+              <label for="Apellido" class="registro_form-label"
+                >Apellidos</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="apellido"
+                aria-describedby="emailHelp"
+                name="apellido"
+                placeholder="Tus apellidos"
+                min="2"
+                minlength="2"
+                required
+              />
+              <p id="registro_error" class="input_error">
+                Escribe tus apellidos
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="registro" id="grupo-celular">
+              <label for="Celular" class="registro_form-label">Celular</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="celular"
+                name="celular"
+                placeholder="Ejemplo: 6241569890"
+                required
+              />
+              <p id="registro_error" class="input_error">
+                Escribe un telefono válido
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="registro" id="grupo-correo">
+              <label for="Correo" class="registro_form-label">Correo</label>
+              <input
+                type="email"
+                class="form-control"
+                id="correo"
+                name="correo"
+                placeholder="Ejemplo: Test@gmail.com"
+                required
+              />
+              <p id="registro_error" class="input_error">
+                Escribe un correo válido
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="registro" id="grupo-contraseña">
+              <label for="Contraseña" class="registro_form-label"
+                >Contraseña</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="contraseña"
+                name="contraseña"
+                min="6"
+                minlength="6"
+                placeholder="minimo 6 caracteres"
+                required
+              />  
+              <p id="registro_error" class="input_error">
+                Escribe una contraseña
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <div class="registro" id="grupo-confirmarcontraseña">
+              <label for="Confirmarcontraseña" class="registro_form-label"
+                >Confirmar contraseña</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="confirmarcontraseña"
+                name="confirmarcontraseña"
+                placeholder="confirme su contraseña"
+                required
+              />
+              <p id="registro_error" class="input_error">
+                La contraseña debe coincidir
+              </p>
+            </div>
+          </div>
+
+          <div class="alerta">
+            <p class="campo_alerta" id="campo_alerta">
+              <i class="fa-solid fa-triangle-exclamation"></i> Faltan rellenar
+              campos
+            </p>
+          </div>
+
+        
+        </form>
+        <div class="d-grid">
+          <button type="submit" id="btnregistro" class="btn boton-color" onclick="funcionesregistro()" >Registrarse</button>
+        </div>
+
+        <div class="mensaje_exitoso">
+          <p class="campo_exitoso" id="campo_exitoso">
+            <i class="fa-solid fa-check"></i> Registro exitoso
+          </p>
+        </div>
+
+      </div>
+    </div>
+    
+
+    <script>
+      //a function that validates the form
+      function funcionesregistro() {
+        //variables
+        var nombre = document.getElementById("nombre").value;
+        var apellido = document.getElementById("apellido").value;
+        var celular = document.getElementById("celular").value;
+        var correo = document.getElementById("correo").value;
+        var contraseña = document.getElementById("contraseña").value;
+        var confirmarcontraseña = document.getElementById("confirmarcontraseña").value;
+    
+        //regular expressions
+        var expresion = /\w+@\w+\.+[a-z]/;
+    
+        //validate the name
+        if (nombre === "" || nombre === null) {
+          alert("Escribe tu nombre");
+          return false;
+        } else if (nombre.length > 30) {
+          alert("El nombre es muy largo");
+          return false;
+        } else if (nombre.length < 2) {
+          alert("El nombre es muy corto");
+          return false;
+        }
+    
+        //validate the last name
+        if (apellido === "" || apellido === null) {
+          alert("Escribe tus apellidos");
+          return false;
+        } else if (apellido.length > 80) {
+          alert("El apellido es muy largo");
+          return false;
+        } else if (apellido.length < 2) {
+          alert("El apellido es muy corto");
+          return false;
+        }
+    
+        //validate the phone number
+        if (celular === "" || celular === null) {
+          alert("Escribe tu numero de telefono");
+          return false;
+        } else if (isNaN(celular)) {
+          alert("Escribe solo numeros");
+          return false;
+        } else if (celular.length > 10) {
+          alert("El numero es muy largo");
+          return false;
+        } else if (celular.length < 10) {
+          alert("El numero es muy corto");
+          return false;
+        }
+    
+        //validate the email
+        if (correo === "" || correo === null) {
+          alert("Escribe tu correo");
+          return false;
+        } else if (!expresion.test(correo)) {
+          alert("Escribe un correo valido");
+          return false;
+        }
+    
+        //validate the password
+        if (contraseña === "" || contraseña === null) {
+          alert("Escribe tu contraseña");
+          return false;
+        } else if (contraseña.length > 15) {
+          alert("La contraseña es muy larga");
+        } else if (contraseña.length < 6) {
+          alert("La contraseña es muy corta");
+        }
+      }
+    </script>
+
+    
+
+    <!--Scripts de firebase-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+    <!--Mis scripts-->
+    <script src="./js/config.js"></script>
+    <script src="./js/guardar.js"></script>
+    <!--<script src="./js/Validacion_registro.js"></script>-->
+    
+    
+    <script
+      src="./recursos/bootstrap-js/bootstrap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    
+    <script
+      src="https://kit.fontawesome.com/d3e350df82.js"
+      crossorigin="anonymous"
+    ></script>
+
+    
+
+  </body>
+  
+</html>
