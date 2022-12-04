@@ -1,0 +1,120 @@
+
+const registro = document.getElementById('formulario_registro');
+const inputs = document.querySelectorAll('#formulario_registro input')
+
+const expresiones = {
+    nombre: /^[a-zA-ZÁ-ÿ\s]{1,40}$/,
+    apellido: /^[a-zA-ZÁ-ÿ\s]{1,40}$/,
+    celular: /^\d{7,14}$/,
+    contraseña: /^.{4,12}$/,
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+}
+const campos = {
+    nombre: false,
+    apellido: false,
+    celular: false,
+    correo: false,
+    contraseña: false,
+    confirmarcontraseña: false
+}
+const validar = (e) =>{
+    switch (e.target.name){
+        case "nombre":
+            validarcampo(expresiones.nombre, e.target, 'nombre');
+        break;        
+        case "apellido":
+            validarcampo(expresiones.apellido, e.target, 'apellido');
+        break; 
+        case "celular":
+            validarcampo(expresiones.celular, e.target, 'celular');
+        break;       
+        case "correo":
+            validarcampo(expresiones.correo, e.target, 'correo');
+        break;       
+        case "contraseña":
+            validarcampo(expresiones.contraseña, e.target, 'contraseña');
+            validarcontraseña();
+        break;
+        case "confirmarcontraseña":
+            validarcontraseña(); 
+        break;
+    }
+}
+const validarcampo = (expresion, input, campo) =>{
+    if(expresion.test( input.value )){
+        document.getElementById(`grupo-${campo}`).classList.remove('registro-incorrecto');
+        document.querySelector(`#grupo-${campo} .input_error`).classList.remove('input_error-activo');
+        campos[campo] = true;
+    }
+    else{
+        document.getElementById(`grupo-${campo}`).classList.add('registro-incorrecto');     
+        document.querySelector(`#grupo-${campo} .input_error`).classList.add('input_error-activo');   
+        campos[campo] = false;    
+    }
+}
+const validarcontraseña = () => {
+    const inputcontraseña = document.getElementById('contraseña');
+    const inputconfirmarcontraseña = document.getElementById('confirmarcontraseña');
+
+    if(inputcontraseña.value !== inputconfirmarcontraseña.value){
+        document.getElementById(`grupo-confirmarcontraseña`).classList.add('registro-incorrecto');   
+        document.getElementById(`grupo-confirmarcontraseña`).classList.remove('registro-correcto');   
+        document.querySelector(`#grupo-confirmarcontraseña .input_error`).classList.add('input_error-activo'); 
+        campos['confirmarcontraseña'] = false;
+    }
+    else{
+        document.getElementById(`grupo-confirmarcontraseña`).classList.remove('registro-incorrecto');   
+        document.getElementById(`grupo-confirmarcontraseña`).classList.add('registro-correcto');   
+        document.querySelector(`#grupo-confirmarcontraseña .input_error`).classList.remove('input_error-activo'); 
+        campos['confirmarcontraseña'] = true;
+    }
+}
+inputs.forEach((input) => {
+    input.addEventListener('keyup', validar)
+    input.addEventListener('blur', validar)
+})
+formulario_registro.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    if(campos.nombre && campos.apellido && campos.celular && campos.correo && campos.contraseña && campos.confirmarcontraseña ){
+        formulario_registro.reset();
+
+       document.getElementById('campo_exitoso').classList.add('campo_exitoso-activo')
+       setTimeout(() =>{
+        document.getElementById('campo_exitoso').classList.remove('campo_exitoso-activo')
+       }, 3000 )
+    }
+    else{
+        document.getElementById('campo_alerta').classList.add('campo_alerta-activo')
+        setTimeout(() =>{
+            document.getElementById('campo_alerta').classList.remove('campo_alerta-activo')
+           }, 4000 )
+    }
+});
+
+
+/*------------------------Contraseña---------------------*/
+
+function restablecerpassword(){
+    var aprovado = true;
+  
+    var email_user = document.getElementById("Res-email").value;
+
+    //validar email
+  var Validar_Email = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+  if (!Validar_Email.test(email_user)) {
+    document.querySelector("#p-error").classList.remove("input_error");
+    document.querySelector("#p-error").classList.add("input_error_activo");
+    
+    document.getElementById("Res-email").style.borderColor = "#ff0000";
+    document.getElementById("Res-email").value = "";
+    
+    aprovado = false;
+  } else {
+    document.querySelector("#p-error").classList.remove("input_error_activo");
+    document.querySelector("#p-error").classList.add("input_error");
+    document.getElementById("Res-email").style.borderColor = "#ced4da";
+    alert("Se ha enviado un email, comprueba tu inbox")
+    aprovado = true;
+  }
+}

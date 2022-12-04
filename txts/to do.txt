@@ -1,0 +1,40 @@
+(short): investigar como cambiar el color del marcador
+
+1.- Corregir la validación de el registro y el login
+2.- Implementar el login mediante firebase
+3.- Implementar firebase realtime
+4.- Hacer la pagina de edición de información de usuarios
+5.- Hacer la pagina de edición de información de unidades
+6.- Crear formulario para agregar una nueva unidad 
+7.- implementar el tracking de la unidad
+8.- Implementar el trazado de rutas asignadas a cada unidad 
+
+
+
+116947
+100124
+112327
+103163
+184407
+600679
+484666
+179036
+400637
+103048 3
+102973 3
+109266 3
+377942
+179243
+184429
+275183
+180359 2
+115171
+109761 2
+
+
+
+
+
+
+
+

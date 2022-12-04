@@ -1,0 +1,74 @@
+
+footer:
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+
+
+javascript
+
+archivo de configuración
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAA5M0eFAvcGGOfY45dVkqPfUA1PGjNx7U",
+    authDomain: "pruebaweb-363606.firebaseapp.com",
+    projectId: "pruebaweb-363606",
+    storageBucket: "pruebaweb-363606.appspot.com",
+    messagingSenderId: "851318074247",
+    appId: "1:851318074247:web:e5ab68fa101daa8f1b4122"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
+
+
+//------------------------------------------------//
+guardar datos
+
+function guardar(){
+  //campos
+  db.collection("usuarios").add({
+    nombre: document.getElementById("nombre").value,
+    apellido: document.getElementById("apellido").value,
+    celular: document.getElementById("celular").value,
+    correo: document.getElementById("correo").value,
+    password: document.getElementById("contraseña").value
+})
+.then((docRef) => {
+  
+  MSJOK();
+})
+.catch((error) => {
+  MSJOK();
+});
+
+  
+}
+
+
+//alertas
+const MSJOK =()=>{
+  Swal.fire({
+    icon: 'success',
+    title: 'Genial',
+    text: ' Los datos se introdujeron correctamente',
+    showConfirmButton:false,
+    footer: '<a class="btn boton-color" href="./index.html">Iniciar sesión</a>'
+  })
+  
+}
+
+const MSJERROR =()=>{
+  Swal.fire(
+    'Genial!',
+    'Los datos se han guardado correctamente',
+    'success'
+  )
+}
+
+

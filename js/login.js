@@ -7,6 +7,25 @@ const MSJERROR =()=>{
   })
 }
 
+const MSJVACIO =()=>{
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Ingresa tu correo y contraseña!'
+  })
+}
+
+
+//validate empty fields
+function validar(){
+  const email = document.getElementById("correo").value;
+  const password = document.getElementById("contraseña").value;
+  if(email == "" || password == ""){
+    MSJVACIO();
+    return false;
+  }
+  return true;
+}
 
 
 
@@ -46,11 +65,7 @@ function getDocField(){
                     var isAnonymous = user.isAnonymous;
                     var uid = user.uid;
                     var providerData = user.providerData;
-                    
-                   
-                
-                   
-                    
+
 
                   } else {
                     console.log("Error");
@@ -91,7 +106,8 @@ function getDocField(){
 
 
 function iniciar(){
+  if(validar() == true){
   getDocField();
-  
+  } 
 }
 

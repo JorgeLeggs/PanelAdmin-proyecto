@@ -1,0 +1,178 @@
+function guardarRegistro(){
+  
+  var dbcampos = {
+    nombre: document.getElementById("nombre").value,
+    apellido: document.getElementById("apellido").value,
+    celular: document.getElementById("celular").value,
+    correo: document.getElementById("correo").value,
+    password: document.getElementById("contraseña").value
+  }
+  
+
+  db.collection("usuarios").doc((document.getElementById("correo").value)).set(dbcampos)
+
+
+
+.then((docRef) => {
+  
+  
+  MSJOK();
+})
+.catch((error) => {
+  MSJERROR();
+});
+}
+
+
+
+function funcionauth() {
+
+  let email = document.getElementById("correo").value;
+  let password = document.getElementById("contraseña").value;
+  console.log(email);
+  console.log(password);
+
+  
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    console.log("si sirvo");
+    var user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log("No sirvo :c");
+  });
+}
+
+
+function funcionesregistro() {
+  guardarRegistro();
+  funcionauth();
+}
+
+
+const MSJOK =()=>{
+  Swal.fire({
+    icon: 'success',
+    title: 'Genial',
+    text: ' Los datos se introdujeron correctamente',
+    showConfirmButton:false,
+    footer: '<a class="btn boton-color" href="./index.html">Iniciar sesión</a>'
+  })
+  
+}
+
+const MSJERROR =()=>{
+  Swal.fire(
+    'Error',
+    'Ha ocurrido un error intente nuevamente',
+    'success'
+  )
+}
+
+
+//------------login--------------//
+
+const loginform = document.querySelector('formulario_login');
+const MSJERROR =()=>{
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Ha ocurrido un error!'
+  })
+}
+
+
+//function to get a specific field from a document in firestore
+function getDocField(){
+  var docRef = db.collection("usuarios").doc((document.getElementById("correo").value));
+  docRef.get().then((doc) => {
+      if (doc.exists) {
+          console.log("Document data:", doc.data().tipouser);
+          
+          if (doc.data().tipouser == "1"){
+
+            usuarioadmitido = true;
+            console.log("usuario admitido");
+            
+
+          }else{
+              usuarioadmitido = false;
+              console.log("usuario no admitido");
+              
+          }
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+          MSJERROR();
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  }); 
+}
+
+
+function login() {
+    
+  const email = document.getElementById("correo").value;
+  const password = document.getElementById("contraseña").value;
+  
+  console.log(email + " "+ password);
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+
+      if (usuarioadmitido == true){
+
+      console.log("Ingreso exitoso");
+      location.href = "./principal.php";
+      }else{
+      location.href="./registro.html";
+      }
+    })
+    .catch((error) => {
+      console.log("Error de ingreso");
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      
+    });
+}
+
+
+
+
+
+
+function iniciar(){
+  getDocField();
+  login();
+}
+
+
+
+
+
+estado 1
+
+nombre:"m21"
+ruta:1
+tipo:"colectivo"
+
+
+allow read, write: if true;
+
+{
+  "rules": {
+    ".read": "auth.uid!=null",  // 2022-11-9
+    ".write": "auth.uid!=null",  // 2022-11-9
+  }
+}
+
+
+
+//obtener usuario actual
+var userId = firebase.auth().currentUser.uid;
+console.log(userId);

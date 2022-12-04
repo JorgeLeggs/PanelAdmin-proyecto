@@ -1,0 +1,153 @@
+
+ID de camion:   M21
+Modelo:         Freightliner
+marca:          Mercedez Benz
+color:          Amarillo
+motor:          Cumins
+estado:         Activo
+ultima:         Ubicación
+
+
+urbano = color naranja
+urbano = color rojo
+
+//Funciona
+document.getElementById('select-location').addEventListener('change',function(e){
+  let coords = e.target.value.split(",");
+  map.flyTo(coords,18);
+  marker = new L.marker(coords)
+  .bindPopup(coords)
+  .addTo(map);
+  
+})
+
+const marker = L.marker([coords]).addTo(map);
+
+
+
+
+<option value="23.069920, -109.705733"> M21</option>
+<option value="23.093278, -109.727248">Ruta 1</option>
+<option value="23.058910, -109.695189">Ruta 2</option>
+<option value="23.044644, -109.699083">Ruta 3</option>
+<option value="23.076604, -109.706763">Ruta 5</option>
+
+
+id: "M21",
+    model: "1998",
+    brand: "Freighliner",
+    color: "Amarillo",
+    engine: "Cuminis",
+    state: "active",
+    // lastLocation:"Rosarito"// esto diría que lo cambies a algo como
+    lastLocation: {
+      latitude: -12112131321.3, // claro esto es un ejemplo jaja
+      longitude: 12213312121,
+    },
+
+
+
+
+
+    document.getElementById('select-location').addEventListener('change',function(e){
+    let coords = e.target.value.split(",");
+    map.flyTo(coords,18);
+    marker = new L.marker(coords)
+    .bindPopup(coords)
+    .addTo(map);
+    
+  })
+
+
+
+
+
+   <label>Id: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp  ${busFound.id} </label>
+  <br>
+  <label>Modelo: &nbsp&nbsp&nbsp&nbsp&nbsp ${busFound.model} </label>
+  <br>
+  <label>Marca: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${busFound.brand}</label>
+  <br>
+  <label>Ruta: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${busFound.ruta}</label>
+  <br>
+  <label>Motor: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${busFound.engine} </label>
+  <br>
+  <label>Color: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${busFound.color} </label>
+  <br>
+  <label>Estado: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${busFound.estado} </label>
+  <br>
+  <label>Ultima <br> ubicación:  &nbsp&nbsp&nbsp ${busFound.lastLocation} </label> 
+  <br>
+
+
+
+  ruta = [[23.079382, -109.716257], [23.077348, -109.716354], [23.074745, -109.716519],[23.074410, -109.711208]];
+
+
+
+
+
+
+
+
+
+
+
+
+  let ruta = null;
+
+
+//////////// 7 de noviembre de 2022/////////////////
+
+function drawroute(){
+  ruta = [
+    [23.058955, -109.694999],
+    [23.055861, -109.694556],
+    [23.054087, -109.703536],
+    [23.061349, -109.704006],
+    [23.063578, -109.702463],
+    [23.069867, -109.705073],
+    [23.072297, -109.705215],
+    [23.078638, -109.707602],
+    [23.090644, -109.707260],
+    [23.092949, -109.708787],
+    [23.095718, -109.709482],
+    [23.095128, -109.712605],
+    [23.101888, -109.713568],
+    [23.100607, -109.724033],
+    [23.105638, -109.724834],
+    [23.106431, -109.724777],
+    [23.106181, -109.726883],
+    [23.106225, -109.726985],
+    [23.106141, -109.727755],
+    [23.105699, -109.728259],
+    [23.105096, -109.732830],
+    [23.097669, -109.731720],
+    [23.097974, -109.729388],
+    [23.103841, -109.730378],
+    [23.104165, -109.728052],
+    [23.104165, -109.728052],
+    [23.100176, -109.727508],
+    [23.100345, -109.726040],
+    [23.096953, -109.725696],
+    [23.095011, -109.727111],
+    [23.093231, -109.727266]
+  
+  ]
+  
+  L.polyline(ruta, {color: "#ff0000", weight: 4}).addTo(map);
+  map.fitBounds(ruta);
+
+  if(markerinicio) markerfinal.remove()
+    
+   
+  markerinicio = L.marker(ruta[0])
+  .bindPopup(ruta[0]).addTo(map);
+  markerfinal = L.marker(ruta[30])
+  .bindPopup(ruta[30]).addTo(map);
+  console.log("si llegué");
+
+
+
+}

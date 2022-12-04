@@ -21,3 +21,4 @@ const db = firebase.firestore();
 // Initialize Firebase Authentication and get a reference to the service
 const auth = firebase.auth();
 
+const database = firebase.database();

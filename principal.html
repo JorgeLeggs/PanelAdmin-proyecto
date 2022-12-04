@@ -34,10 +34,64 @@
   </head>
 
   <script>
- 
+   
+      function mostrarRT() {
+        
+      var datosreal = firebase.database().ref('/m21');
+        datosreal.on('value', (snapshot) => {
+          const datos = snapshot.val();
+          
+          localStorage.setItem("id", datos.nombre);
+          localStorage.setItem("estado",datos.estado);
+          localStorage.setItem("ruta",datos.ruta);
+          localStorage.setItem("tipo",datos.tipo);
+          localStorage.setItem("latitud",datos.lat);
+          localStorage.setItem("longitud",datos.lng);
+          console.log(datos)
+        });
+
+        //let map = L.map('map').setView([23.069920, -109.705733],16);
+    }
+
+    
+    function marcador(){
+      
+      const iconoBASE = L.icon({
+        iconUrl: './recursos/icono/base.png',
+        
+        iconAnchor: [17, 34],
+    
+      });
+
+
+      const iconoCAMION = L.icon({
+        iconUrl: './recursos/icono/camion.png',
+        iconAnchor: [17, 34],
+      });
+      
+      
+      var lat = localStorage.getItem("latitud");
+      var lng = localStorage.getItem("longitud");
+      var GPSubicacion = (lat + "," + lng);
+      let coords = GPSubicacion.split(",");
+
+
+      if(marker) marker.remove();
+      map.flyTo(coords,16);
+      marker = L.marker(coords , {icon: iconoCAMION})
+      .bindPopup(coords).addTo(map);
+      
+      
+        //drawroute();
+
+     
+     
+      
+    }
+
   </script>
 
-  <body id="page-top" onload="mostrar()" >
+  <body id="page-top" onload="mostrarRT()" >
     <!-- Page Wrapper -->
 
     <div id="wrapper">
@@ -225,7 +279,7 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span value="hentai" name="nombresesion" id="nombresesion" class="mr-2 d-none d-lg-inline text-gray-900 small">
+                  <span style="font-size: 20px;" name="nombresesion" id="nombresesion" class="mr-2 d-none d-lg-inline text-gray-900 small me-xxl-3">
                     <script>
                       document.write(localStorage.getItem("usuario"));
                     </script>
@@ -290,7 +344,9 @@
                     </h6>
 
                     <div class="controles-mapa">
-                      <button class="actualizar">
+                    
+
+                      <button class="actualizar" >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           class="icon icon-tabler icon-tabler-refresh"
@@ -320,7 +376,120 @@
                   <!-- Card Body -->
                   <div class="card-body contenedor-carta">
                     <div class="contenedor-info">
-                      <label id="lblinfo" class="titulo"></label>
+
+                      <!--<label id="lblinfo" class="titulo">Holaaaaaaaaa</label>-->
+                      <table cellpadding="20">
+                        <tr>
+                        <td>Id: <td>
+                        <td>
+                          
+                          <label id="infoID">
+                            <script>
+                            
+                            const intervalID = setInterval (() => {
+                                var contenidoid = localStorage.getItem("id");
+                                //console.log(contenidoid);
+                                infoID.innerHTML = contenidoid.toString();
+                         
+                              
+                              }, 2000);
+                                                      
+                            </script>
+                          </label>
+                          
+                          
+                        <td>
+                        </tr>
+                        <tr>
+                        <td>Tipo: <td>
+                        <td>
+                          <label id="infoTIPO">
+                            <script>
+                             const intervalTIPO = setInterval (() => {
+                                var contenidotipo = localStorage.getItem("tipo");
+                                //console.log(contenidotipo);
+                                infoTIPO.innerHTML = contenidotipo.toString();
+                         
+                              
+                              }, 2000);
+                              
+                             
+                              </script>
+                          </label>
+                          
+                          <td>
+                        </tr>
+                        <tr>
+                        <td>Ruta <td>
+                        <td>
+                          <label id="infoRUTA">
+
+                            <script>
+                             
+                              const intervalRUTA = setInterval (() => {
+                                var contenidoruta = localStorage.getItem("ruta");
+                                //console.log(contenidoruta);
+                                infoRUTA.innerHTML = contenidoruta.toString();
+                         
+                              
+                              }, 2000);
+                                
+                                
+
+
+                              </script> 
+                          </label>
+                          
+                          <td>
+                        </tr>
+                        <tr>
+                        <td>Estado <td>
+                        <td>
+                          <label id="infoESTADO">
+                            <script>
+                            const intervalESTADO = setInterval (() => {
+                              var contenidoestado = localStorage.getItem("estado");
+                              //console.log(contenidoestado);
+                              infoESTADO.innerHTML = contenidoestado.toString();
+                       
+                            
+                            }, 2000);
+                          </script>
+                          <td>
+                        </tr>
+                        <tr>
+                        <td>Ubicacion: <td>
+                        <td>
+                          <label id="infoUBICACION">
+
+                            <script>
+                            //document.write(localStorage.getItem("latitud") + " "+ localStorage.getItem("longitud"));
+                           
+                              
+                              const intervalUBICACION = setInterval (() => {
+
+ 
+                                var contenidoubicacion = (localStorage.getItem("latitud") +","+ localStorage.getItem("longitud"));
+                                //console.log(contenidoubicacion);
+                                infoUBICACION.innerHTML = contenidoubicacion.toString();
+
+                              }, 2000);
+
+                            
+
+
+                          </script>
+                          </label>
+                          
+                          
+                          <td>
+                        </tr>
+                      
+                        </table>
+
+                        
+
+
                     </div>
                   </div>
                 </div>
@@ -344,6 +513,25 @@
                           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                           crossorigin=""
                         ></script>
+                        
+                        <script>
+                          let map = L.map('map').setView([23.069920, -109.705733],16)
+                          let marker = null;
+                          const intervalGPS = setInterval (() => {
+
+                            marcador();
+                        
+
+                            }, 2000);
+
+
+
+
+                         
+
+                        </script>
+
+
                       </div>
                     </div>
                   </div>
@@ -432,6 +620,8 @@
                     // An error happened.
                     console.log("error al cerrar sesion");
                   });
+
+                localStorage.clear();
               };
             </script>
 
@@ -452,7 +642,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <!--<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <!--Mapa-->
     <script src="./js/config.js"></script>
     <script src="./js/login.js"></script>
