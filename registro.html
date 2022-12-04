@@ -134,7 +134,7 @@
                 name="contraseña"
                 min="6"
                 minlength="6"
-                placeholder="minimo 6 caracteres"
+                placeholder="Mínimo 6 caracteres, una mayuscula, una minuscula y un caracter"
                 required
               />  
               <p id="registro_error" class="input_error">
@@ -162,6 +162,8 @@
             </div>
           </div>
 
+          <input type="hidden" id="tipouser" name="tipouser" value="1">
+
           <div class="alerta">
             <p class="campo_alerta" id="campo_alerta">
               <i class="fa-solid fa-triangle-exclamation"></i> Faltan rellenar
@@ -172,7 +174,9 @@
         
         </form>
         <div class="d-grid">
-          <button type="submit" id="btnregistro" class="btn boton-color" onclick="funcionesregistro()" >Registrarse</button>
+          <button type="submit" id="btnregistro" class="btn boton-color" onclick="funcionesregistro()" >
+            Registrarse
+          </button>
         </div>
 
         <div class="mensaje_exitoso">
@@ -185,81 +189,6 @@
     </div>
     
 
-    <script>
-      //a function that validates the form
-      function funcionesregistro() {
-        //variables
-        var nombre = document.getElementById("nombre").value;
-        var apellido = document.getElementById("apellido").value;
-        var celular = document.getElementById("celular").value;
-        var correo = document.getElementById("correo").value;
-        var contraseña = document.getElementById("contraseña").value;
-        var confirmarcontraseña = document.getElementById("confirmarcontraseña").value;
-    
-        //regular expressions
-        var expresion = /\w+@\w+\.+[a-z]/;
-    
-        //validate the name
-        if (nombre === "" || nombre === null) {
-          alert("Escribe tu nombre");
-          return false;
-        } else if (nombre.length > 30) {
-          alert("El nombre es muy largo");
-          return false;
-        } else if (nombre.length < 2) {
-          alert("El nombre es muy corto");
-          return false;
-        }
-    
-        //validate the last name
-        if (apellido === "" || apellido === null) {
-          alert("Escribe tus apellidos");
-          return false;
-        } else if (apellido.length > 80) {
-          alert("El apellido es muy largo");
-          return false;
-        } else if (apellido.length < 2) {
-          alert("El apellido es muy corto");
-          return false;
-        }
-    
-        //validate the phone number
-        if (celular === "" || celular === null) {
-          alert("Escribe tu numero de telefono");
-          return false;
-        } else if (isNaN(celular)) {
-          alert("Escribe solo numeros");
-          return false;
-        } else if (celular.length > 10) {
-          alert("El numero es muy largo");
-          return false;
-        } else if (celular.length < 10) {
-          alert("El numero es muy corto");
-          return false;
-        }
-    
-        //validate the email
-        if (correo === "" || correo === null) {
-          alert("Escribe tu correo");
-          return false;
-        } else if (!expresion.test(correo)) {
-          alert("Escribe un correo valido");
-          return false;
-        }
-    
-        //validate the password
-        if (contraseña === "" || contraseña === null) {
-          alert("Escribe tu contraseña");
-          return false;
-        } else if (contraseña.length > 15) {
-          alert("La contraseña es muy larga");
-        } else if (contraseña.length < 6) {
-          alert("La contraseña es muy corta");
-        }
-      }
-    </script>
-
-    
 
     <!--Scripts de firebase-->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
@@ -269,7 +198,6 @@
 
     <!--Mis scripts-->
     <script src="./js/config.js"></script>
-    <script src="./js/guardar.js"></script>
     <!--<script src="./js/Validacion_registro.js"></script>-->
     
     
@@ -283,6 +211,9 @@
       crossorigin="anonymous"
     ></script>
 
+    
+    
+    <script src="./js/guardar.js"></script>
     
 
   </body>

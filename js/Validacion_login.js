@@ -40,7 +40,8 @@ inputs.forEach((input) => {
 })
 
 formulario_login.addEventListener('click', (e) => {
-    if(campos.correo && campos.contraseña){        
+    if(campos.correo && campos.contraseña){      
+        
     }
     else{
         

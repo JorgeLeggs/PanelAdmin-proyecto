@@ -1,3 +1,5 @@
+
+/*
 function ver(){
     db.collection("usuarios").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -5,3 +7,5 @@ function ver(){
         });
     });
 };
+*/
+

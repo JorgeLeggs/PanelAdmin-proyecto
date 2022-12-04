@@ -1,9 +1,72 @@
+const valideRegisterForm = ()=>{
+  const $nombre = document.getElementById("nombre").value
+    const $apellido = document.getElementById("apellido").value
+    const $celular = document.getElementById("celular").value
+    const $correo = document.getElementById("correo").value
+    const $password = document.getElementById("contraseña").value
 
-    var Validar_Email = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    $emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    $passwordRegex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/;
+    $celularRegex = /^\d{7,14}$/;
+    $nombreRegex = /^([a-zA-Z])*$/;
+    $apellidoRegex = /^([a-zA-Z])*$/;
 
+    if($nombre == "" || $apellido == "" || $celular == "" || $correo == "" || $password == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Todos los campos son obligatorios!'
+      })
+    return false;
+    }
 
+      if(!$nombreRegex.test($nombre)){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'El nombre no es válido!'
+        })
+        return false
+      }
 
+      if(!$apellidoRegex.test($apellido)){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'El apellido no es válido!'
+        })
+        return false
+      }
 
+      if(!$celularRegex.test($celular)){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'El celular no es válido!'
+        })
+        return false
+      }
+
+      if(!$emailRegex.test($correo)){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'El correo no es válido!'
+        })
+        return false
+      }
+
+        if(!$passwordRegex.test($password)){
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La contraseña no es válida!'
+          })
+          return false
+        }
+
+    return true;
+}
 
 //---------------------Base de datos---------------------------//
 
@@ -14,7 +77,8 @@ function guardarRegistro(){
     apellido: document.getElementById("apellido").value,
     celular: document.getElementById("celular").value,
     correo: document.getElementById("correo").value,
-    password: document.getElementById("contraseña").value
+    password: document.getElementById("contraseña").value,
+    tipouser: document.getElementById("tipouser").value
   }
   
   
@@ -73,8 +137,11 @@ const MSJERROR =()=>{
 
 //--------Funcion para ejecutar funciones------------//
 function funcionesregistro() {
-  validar_registro();
+  
+  const isvalid = valideRegisterForm()
+  if(isvalid){
   guardarRegistro();
   funcionauth();
+  }
 }
 

@@ -1,0 +1,291 @@
+:root {
+
+    --principal:#f5e0c4;
+    --blanco: #ffffff;
+    --oscuro: #000000;
+    --fondo: #70b7d4;
+    --boton: #f9c017;
+    --rojo: #ff0000;
+    --morado: #605dff;
+    --naranja:#0f43ff;
+    --verde: #1aba02;
+    --amarillo: #ffe600;
+    --hover-boton:#c39716;
+}
+
+
+*{
+    box-sizing: border-box;
+}
+    
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+    
+
+html {
+    font-family: 'Inter Tight', sans-serif;
+        
+    }
+  
+body{
+        background-image: url(../recursos/img/camion-blur.jpg);
+        background-size: 100%;
+        background-repeat:repeat-y;
+        backdrop-filter: blur(10px);
+        background-size:cover;
+}
+
+
+.contenedor_principal{
+    background-color: var(--blanco);
+    margin: 105px 100px;
+    border-radius: 30px; 
+    
+}
+
+.contenedor_titulo{
+    padding: 10px;
+    max-width: 1024px;
+    margin:auto;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+}
+
+.titulo{
+    font-size: 30px; 
+    font-weight:bold; 
+    margin-top: 20px;
+}
+
+.titulo-R{
+    font-size: 70px; 
+    font-weight:bold; 
+    margin-top: 20px;
+}
+
+.score{
+    font-size: 70px; 
+    font-weight:bold; 
+    margin-top: 20px;
+    color: var(--verde);
+}
+
+
+.titulo-E{
+    font-size: 40px; 
+    font-weight:bold; 
+    margin-top: 20px;
+}
+
+.registro{
+    margin: 10px 20px;
+    text-align: center;
+}
+
+
+
+.fldset{
+    
+    border:0;
+}
+
+label{
+    display: flex;
+    min-width: 180px;
+    font-weight:bold;
+}
+
+legend{
+    display: flex;
+    min-width: 120px;
+    font-weight:bold;
+}
+
+.input_contenedor{
+    display: flex;
+    
+    flex-wrap: wrap;
+    
+}
+.input_sesion{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.inputs{
+    /*margin-left: 24px;*/
+    
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+/*-----------------------------*/
+.select-sex{
+    width: 205px;
+}
+
+
+section{
+    margin: 20px 60px;
+}
+
+.respuestas_box{
+    margin-left: 19px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+ 
+}
+
+.label_respuestas{
+    min-width: 2000px;
+}
+
+.input_respuestas{
+
+    display: flex;
+    flex-direction: column;   
+}
+input{
+    min-width: 50px;
+}
+
+li{
+    font-weight:bold;
+}
+
+.rellenar_respuesta{
+    width: 45px;
+    margin-left: 24px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+   
+}
+
+.lbl_feedback{
+    font-weight: bold; 
+    text-align: center;
+    font-size: 40px;
+}
+
+textarea{
+    font-size: 18px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #333;  
+    resize: none;
+}
+
+.contenedor_boton{
+
+    margin: 15px auto;
+}
+
+.boton{
+
+    font-size: 20px;
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--boton);
+    border-radius: 20px;
+    color: var(--negro);
+    cursor: pointer; 
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boton_reset{
+    margin-left: 20px;
+}
+
+.boton:hover, .boton_del:hover, .exit:hover , .boton_edit:hover , .boton_test:hover{
+
+    background-color: var(--hover-boton);
+    color: var(--negro);
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+
+.boton_del{
+    font-size: 20px;
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--amarillo);
+    border-radius: 20px;
+    color: var(--oscuro);
+    cursor: pointer; 
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.exit{
+    font-size: 20px;
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--rojo);
+    border-radius: 20px;
+    color: var(--blanco);
+    cursor: pointer; 
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.boton_edit{
+    font-size: 20px;
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--morado);
+    border-radius: 20px;
+    color: var(--blanco);
+    cursor: pointer; 
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+.boton_test{
+    font-size: 20px;
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: var(--naranja);
+    border-radius: 20px;
+    color: var(--blanco);
+    cursor: pointer; 
+    margin-bottom: 20px;
+    text-decoration: none;
+}
+
+/*----------Error-----------*/
+.input_error_activo{
+    display: block;
+    color: var(--rojo);
+}
+
+.input_error{
+    font-size: 14px;
+    display: none;
+}
+
+
+

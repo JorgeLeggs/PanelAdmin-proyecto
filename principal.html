@@ -33,8 +33,13 @@
     <link rel="stylesheet" href="./CSS/style.css" />
   </head>
 
-  <body id="page-top">
+  <script>
+ 
+  </script>
+
+  <body id="page-top" onload="mostrar()" >
     <!-- Page Wrapper -->
+
     <div id="wrapper">
       <!-- Sidebar -->
       <ul
@@ -44,7 +49,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="index.html"
+          href="./principal.php"
         >
           <div class="sidebar-brand-icon">
             <img
@@ -59,7 +64,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="mt-3 nav-item active">
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="./principal.html">
             <i class="fa-solid fa-bus"></i>
             <span>Inicio</span></a
           >
@@ -71,124 +76,11 @@
         <!-- Heading -->
         <div class="sidebar-heading">Unidades</div>
 
-        <!-- Menu Activas -->
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseTwo"
-            aria-expanded="true"
-            aria-controls="collapseTwo"
+        <li class="mt-3 nav-item active">
+          <a class="nav-link" href="./editar.php">
+            <i class="fa-solid fa-bus"></i>
+            <span>Editar</span></a
           >
-            <i class="fa-regular fa-circle-check"></i>
-            <span>Activas</span>
-          </a>
-          <div
-            id="collapseTwo"
-            class="collapse"
-            aria-labelledby="headingTwo"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Unidades:</h6>
-              <a class="collapse-item" href="buttons.html">Camion M21</a>
-              <a class="collapse-item" href="cards.html">Camion 2</a>
-              <a class="collapse-item" href="cards.html">Camion 3</a>
-              <a class="collapse-item" href="cards.html">Camion 4</a>
-            </div>
-          </div>
-        </li>
-
-        <!-- Activas Inactivas -->
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseInactivas"
-            aria-expanded="true"
-            aria-controls="collapseInactivas"
-          >
-            <i class="fa-regular fa-circle-xmark"></i>
-            <span>Inactivas</span>
-          </a>
-          <div
-            id="collapseInactivas"
-            class="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Unidades:</h6>
-              <a class="collapse-item">Camion 1</a>
-              <a class="collapse-item" href="utilities-border.html">Camion 2</a>
-              <a class="collapse-item" href="utilities-animation.html"
-                >Camion 3</a
-              >
-              <a class="collapse-item" href="utilities-other.html">Camion 4</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseMantenimiento"
-            aria-expanded="true"
-            aria-controls="collapseMantenimiento"
-          >
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Mantenimineto</span>
-          </a>
-          <div
-            id="collapseMantenimiento"
-            class="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Unidades:</h6>
-              <a class="collapse-item" href="utilities-color.html">Camion 1</a>
-              <a class="collapse-item" href="utilities-border.html">Camion 2</a>
-              <a class="collapse-item" href="utilities-animation.html"
-                >Camion 3</a
-              >
-              <a class="collapse-item" href="utilities-other.html">Camion 4</a>
-            </div>
-          </div>
-        </li>
-
-        <li class="nav-item">
-          <a
-            class="nav-link collapsed"
-            href="#"
-            data-toggle="collapse"
-            data-target="#collapseFServicio"
-            aria-expanded="true"
-            aria-controls="collapseFServicio"
-          >
-            <i class="fa-solid fa-gears"></i>
-            <span>Fuera de servicio</span>
-          </a>
-          <div
-            id="collapseFServicio"
-            class="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Unidades:</h6>
-              <a class="collapse-item" href="utilities-color.html">Camion 1</a>
-              <a class="collapse-item" href="utilities-border.html">Camion 2</a>
-              <a class="collapse-item" href="utilities-animation.html"
-                >Camion 3</a
-              >
-              <a class="collapse-item" href="utilities-other.html">Camion 4</a>
-            </div>
-          </div>
         </li>
 
         <!-- Divider -->
@@ -200,7 +92,6 @@
         </div>
       </ul>
       <!-- End of Sidebar -->
-
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
@@ -334,9 +225,11 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span class="mr-2 d-none d-lg-inline text-gray-900 small"
-                    >Fulanito Menchú</span
-                  >
+                  <span value="hentai" name="nombresesion" id="nombresesion" class="mr-2 d-none d-lg-inline text-gray-900 small">
+                    <script>
+                      document.write(localStorage.getItem("usuario"));
+                    </script>
+                  </span>
                   <img
                     class="img-profile rounded-circle"
                     src="./recursos/img/undraw_profile.svg"
@@ -428,9 +321,7 @@
                   <div class="card-body contenedor-carta">
                     <div class="contenedor-info">
                       <label id="lblinfo" class="titulo"></label>
-                      
                     </div>
-                    
                   </div>
                 </div>
               </div>
@@ -526,15 +417,46 @@
             >
               Cancelar
             </button>
-            <a class="btn btn-primary" href="./index.html">Salir</a>
+
+            <script>
+              const cerrarsesion = () => {
+                firebase
+                  .auth()
+                  .signOut()
+                  .then(() => {
+                    // Sign-out successful.
+                    console.log("sesion cerrada");
+                    location.href = "./index.html";
+                  })
+                  .catch((error) => {
+                    // An error happened.
+                    console.log("error al cerrar sesion");
+                  });
+              };
+            </script>
+
+            <button
+              type="button"
+              onclick="cerrarsesion()"
+              id="btnsalir"
+              class="boton boton-color"
+            >
+              Salir
+            </button>
           </div>
         </div>
       </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <!--<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>-->
     <!--Mapa-->
+    <script src="./js/config.js"></script>
+    <script src="./js/login.js"></script>
     <script src="./js/mapa.js" type="module"></script>
-
     <script
       src="https://kit.fontawesome.com/78b5397b33.js"
       crossorigin="anonymous"
@@ -549,12 +471,5 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
   </body>
 </html>
