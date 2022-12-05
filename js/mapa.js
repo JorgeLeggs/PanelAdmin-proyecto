@@ -714,7 +714,7 @@ $selectunidad.addEventListener("change", (e) => {
 
 
 
-
+/*
 const navBar = document.querySelector("nav"),
   menuBtns = document.querySelectorAll(".menu-icon"),
   overlay = document.querySelector(".overlay");
@@ -728,6 +728,7 @@ overlay.addEventListener("click", () => {
   navBar.classList.remove("open");
 });
 
+*/
 function drawroute(){
   
     C1 = [
