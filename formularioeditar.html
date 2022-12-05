@@ -50,6 +50,8 @@
       firebase.database().ref("/camion1").set(datoscamion);
       location.href = "./principal.html";
     }
+
+
   </script>
 
   <body class="sb-nav-fixed" onload="mostrarRT()">
@@ -83,14 +85,23 @@
           <form id="form" class="d-block">
             <div class="mb-3">
               <label for="content">Nombre de la unidad</label>
+              
+
+
               <input
-                required
-                type="text"
-                name="nombre"
-                class="form-control"
-                id="nombre"
-                aria-describedby="emailHelp"
-              />
+              required
+              type="text"
+              value=""
+              name="nombre"
+              class="form-control"
+              id="nombre"
+              aria-describedby="emailHelp"
+              >
+              <script>
+                  var test = localStorage.getItem("id");
+                  document.getElementById("nombre").value = test;
+              </script>
+              
               <span class="help-block text-danger" id="content-span"></span>
             </div>
 

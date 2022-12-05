@@ -34,82 +34,66 @@
   </head>
 
   <script>
-   
+    function mostrarRT() {
+      var datosreal = firebase.database().ref("/camion1");
+      datosreal.on("value", (snapshot) => {
+        const datos = snapshot.val();
 
-      function mostrarRT() {
-        
-      var datosreal = firebase.database().ref('/camion1');
-        datosreal.on('value', (snapshot) => {
-          const datos = snapshot.val();
-          
-          localStorage.setItem("id", datos.nombre);
-          localStorage.setItem("estado",datos.estado);
-          localStorage.setItem("ruta",datos.ruta);
-          localStorage.setItem("tipo",datos.tipo);
-          
-          console.log(datos)
-        });
+        localStorage.setItem("id", datos.nombre);
+        localStorage.setItem("estado", datos.estado);
+        localStorage.setItem("ruta", datos.ruta);
+        localStorage.setItem("tipo", datos.tipo);
 
-
+        console.log(datos);
+      });
     }
 
     function mostrarCAMION() {
-        
-        var ubireal = firebase.database().ref('/m21');
-          ubireal.on('value', (snapshot) => {
-            const coordenadas = snapshot.val();
-                
-            localStorage.setItem("latitud",coordenadas.lat);
-            localStorage.setItem("longitud",coordenadas.lng);
-         
-            console.log(coordenadas)
-          });
-        }
+      var ubireal = firebase.database().ref("/m21");
+      ubireal.on("value", (snapshot) => {
+        const coordenadas = snapshot.val();
 
-    function obtenerdatos(){
+        localStorage.setItem("latitud", coordenadas.lat);
+        localStorage.setItem("longitud", coordenadas.lng);
+
+        console.log(coordenadas);
+      });
+    }
+
+    function obtenerdatos() {
       mostrarRT();
+      drawroute();
       mostrarCAMION();
     }
 
-    
-    function marcador(){
-      
+    function marcador() {
       const iconoBASE = L.icon({
-        iconUrl: './recursos/icono/base.png',
-        
-        iconAnchor: [17, 34],
-    
-      });
+        iconUrl: "./recursos/icono/base.png",
 
+        iconAnchor: [17, 34],
+      });
 
       const iconoCAMION = L.icon({
-        iconUrl: './recursos/icono/camion.png',
+        iconUrl: "./recursos/icono/camion.png",
         iconAnchor: [17, 34],
       });
-      
-      
+
       var lat = localStorage.getItem("latitud");
       var lng = localStorage.getItem("longitud");
-      var GPSubicacion = (lat + "," + lng);
+      var GPSubicacion = lat + "," + lng;
       let coords = GPSubicacion.split(",");
 
-
-      if(marker) marker.remove();
+      if (marker) marker.remove();
       //map.flyTo(coords,16);
-      marker = L.marker(coords , {icon: iconoCAMION})
-      .bindPopup(coords).addTo(map);
-      
-      
-        //drawroute();
+      marker = L.marker(coords, { icon: iconoCAMION })
+        .bindPopup(coords)
+        .addTo(map);
 
-     
-     
-      
+      //drawroute();
     }
-
   </script>
 
-  <body id="page-top" onload="obtenerdatos()" >
+  <body id="page-top" onload="obtenerdatos()">
     <!-- Page Wrapper -->
 
     <div id="wrapper">
@@ -139,6 +123,13 @@
           <a class="nav-link" href="./principal.html">
             <i class="fa-solid fa-bus"></i>
             <span>Inicio</span></a
+          >
+        </li>
+
+        <li class="mt-3 nav-item active">
+          <a class="nav-link" href="./registro.html">
+            <i class="fa-solid fa-user"></i>
+            <span>Registrar usuarios</span></a
           >
         </li>
 
@@ -297,7 +288,12 @@
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  <span style="font-size: 20px;" name="nombresesion" id="nombresesion" class="mr-2 d-none d-lg-inline text-gray-900 small me-xxl-3">
+                  <span
+                    style="font-size: 20px"
+                    name="nombresesion"
+                    id="nombresesion"
+                    class="mr-2 d-none d-lg-inline text-gray-900 small me-xxl-3"
+                  >
                     <script>
                       document.write(localStorage.getItem("usuario"));
                     </script>
@@ -361,162 +357,117 @@
                       Datos de la Unidad
                     </h6>
 
-                    <div class="controles-mapa">
-                    
-
-                      <button class="actualizar" >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-refresh"
-                          width="28"
-                          height="28"
-                          viewBox="0 0 24 24"
-                          stroke-width="1.5"
-                          stroke="#000000"
-                          fill="none"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                          <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                          <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                        </svg>
-                      </button>
-                      <!--
-                      <select
-                        class="combo"
-                        name="selectunidad"
-                        id="selectunidad"
-                      >
-                        <option value="0">Seleccione una unidad</option>
-                      </select>
-                      -->
-                    </div>
+                 
                   </div>
                   <!-- Card Body -->
                   <div class="card-body contenedor-carta">
                     <div class="contenedor-info">
-
                       <!--<label id="lblinfo" class="titulo">Holaaaaaaaaa</label>-->
-                      <table cellpadding="20">
+                      <table class="table " cellpadding="20">
                         <tr>
-                        <td>Id: <td>
-                        <td>
-                          
-                          <label id="infoID">
-                            <script>
-                            
-                            const intervalID = setInterval (() => {
-                                var contenidoid = localStorage.getItem("id");
-                                //console.log(contenidoid);
-                                infoID.innerHTML = contenidoid.toString();
-                         
-                              
-                              }, 2000);
-                                                      
-                            </script>
-                          </label>
-                          
-                          
-                        <td>
-                        </tr>
-                        <tr>
-                        <td>Tipo: <td>
-                        <td>
-                          <label id="infoTIPO">
-                            <script>
-                             const intervalTIPO = setInterval (() => {
-                                var contenidotipo = localStorage.getItem("tipo");
-                                //console.log(contenidotipo);
-                                infoTIPO.innerHTML = contenidotipo.toString();
-                         
-                              
-                              }, 2000);
-                              
-                             
+                          <td style="font-weight: bold; font-size: 25px;">Id:</td>
+                          <td></td>
+                          <td>
+                            <label id="infoID" style="font-size: 25px;">
+                              <script>
+                                const intervalID = setInterval(() => {
+                                  var contenidoid = localStorage.getItem("id");
+                                  //console.log(contenidoid);
+                                  infoID.innerHTML = contenidoid.toString();
+                                }, 2000);
                               </script>
-                          </label>
-                          
-                          <td>
+                            </label>
+                          </td>
+
+                          <td></td>
                         </tr>
+
                         <tr>
-                        <td>Ruta <td>
-                        <td>
-                          <label id="infoRUTA">
-
-                            <script>
-                             
-                              const intervalRUTA = setInterval (() => {
-                                var contenidoruta = localStorage.getItem("ruta");
-                                //console.log(contenidoruta);
-                                infoRUTA.innerHTML = contenidoruta.toString();
-                         
-                              
-                              }, 2000);
-                                
-                                
-
-
-                              </script> 
-                          </label>
-                          
+                          <td style="font-weight: bold; font-size: 25px;">Tipo:</td>
+                          <td></td>
                           <td>
+                            <label id="infoTIPO" style=" font-size: 25px;">
+                              <script>
+                                const intervalTIPO = setInterval(() => {
+                                  var contenidotipo =
+                                    localStorage.getItem("tipo");
+                                  //console.log(contenidotipo);
+                                  infoTIPO.innerHTML = contenidotipo.toString();
+                                }, 2000);
+                              </script>
+                            </label>
+                          </td>
+
+                          <td></td>
                         </tr>
+
                         <tr>
-                        <td>Estado <td>
-                        <td>
-                          <label id="infoESTADO">
-                            <script>
-                            const intervalESTADO = setInterval (() => {
-                              var contenidoestado = localStorage.getItem("estado");
-                              if(contenidoestado == "1"){
-                                infoESTADO.innerHTML = "Activo";
-                              }
-                                else{
-                                  infoESTADO.innerHTML = "Inactivo";
-                                }
-                              //console.log(contenidoestado);
-                              //infoESTADO.innerHTML = contenidoestado.toString();
-                       
-                            
-                            }, 2000);
-                          </script>
-                          </label>
+                          <td style="font-weight: bold; font-size: 25px;">Ruta</td>
+                          <td></td>
                           <td>
+                            <label id="infoRUTA" style=" font-size: 25px;">
+                              <script>
+                                const intervalRUTA = setInterval(() => {
+                                  var contenidoruta =
+                                    localStorage.getItem("ruta");
+                                  //console.log(contenidoruta);
+                                  infoRUTA.innerHTML = contenidoruta.toString();
+                                }, 2000);
+                              </script>
+                            </label>
+                          </td>
+
+                          <td></td>
                         </tr>
+
                         <tr>
-                        <td>Ubicacion: <td>
-                        <td>
-                          <label id="infoUBICACION">
-
-                            <script>
-                            //document.write(localStorage.getItem("latitud") + " "+ localStorage.getItem("longitud"));
-                           
-                              
-                              const intervalUBICACION = setInterval (() => {
-
- 
-                                var contenidoubicacion = (localStorage.getItem("latitud") +","+ localStorage.getItem("longitud"));
-                                //console.log(contenidoubicacion);
-                                infoUBICACION.innerHTML = contenidoubicacion.toString();
-
-                              }, 2000);
-
-                            
-
-
-                          </script>
-                          </label>
-                          
-                          
+                          <td style="font-weight: bold; font-size: 25px;">Estado</td>
+                          <td></td>
                           <td>
+                            <label id="infoESTADO" style=" font-size: 25px;">
+                              <script>
+                                const intervalESTADO = setInterval(() => {
+                                  var contenidoestado =
+                                    localStorage.getItem("estado");
+                                  if (contenidoestado == "1") {
+                                    infoESTADO.innerHTML = "Activo";
+                                  } else {
+                                    infoESTADO.innerHTML = "Inactivo";
+                                  }
+                                  //console.log(contenidoestado);
+                                  //infoESTADO.innerHTML = contenidoestado.toString();
+                                }, 2000);
+                              </script>
+                            </label>
+                          </td>
+
+                          <td></td>
                         </tr>
-                      
-                        </table>
 
-                        
+                        <tr>
+                          <td style="font-weight: bold; font-size: 25px;">Ubicacion:</td>
+                          <td></td>
+                          <td>
+                            <label id="infoUBICACION" style="font-size: 25px;">
+                              <script>
+                                //document.write(localStorage.getItem("latitud") + " "+ localStorage.getItem("longitud"));
 
+                                const intervalUBICACION = setInterval(() => {
+                                  var contenidoubicacion =
+                                    localStorage.getItem("latitud") +
+                                    "," +
+                                    localStorage.getItem("longitud");
+                                  //console.log(contenidoubicacion);
+                                  infoUBICACION.innerHTML =
+                                    contenidoubicacion.toString();
+                                }, 2000);
+                              </script>
+                            </label>
+                          </td>
 
+                          <td></td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -540,25 +491,17 @@
                           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                           crossorigin=""
                         ></script>
-                        
+
                         <script>
-                          let map = L.map('map').setView([23.069920, -109.705733],14)
+                          let map = L.map("map").setView(
+                            [23.06992, -109.705733],
+                            14
+                          );
                           let marker = null;
-                          const intervalGPS = setInterval (() => {
-
+                          const intervalGPS = setInterval(() => {
                             marcador();
-                        
-
-                            }, 2000);
-
-
-
-
-                         
-
+                          }, 2000);
                         </script>
-
-
                       </div>
                     </div>
                   </div>
@@ -647,8 +590,6 @@
                     // An error happened.
                     console.log("error al cerrar sesion");
                   });
-
-                localStorage.clear();
               };
             </script>
 
@@ -664,6 +605,696 @@
         </div>
       </div>
     </div>
+
+    <script>
+      function drawroute() {
+        var tipo = localStorage.getItem("tipo");
+        var ruta = localStorage.getItem("ruta");
+        let markerinicio = null;
+        let markerfinal = null;
+
+        const iconoBASE = L.icon({
+          iconUrl: "./recursos/icono/base.png",
+
+          iconAnchor: [17, 34],
+        });
+
+        C1 = [
+          [23.058955, -109.694999],
+          [23.055861, -109.694556],
+          [23.054087, -109.703536],
+          [23.061349, -109.704006],
+          [23.063578, -109.702463],
+          [23.069867, -109.705073],
+          [23.072297, -109.705215],
+          [23.078638, -109.707602],
+          [23.090644, -109.70726],
+          [23.092949, -109.708787],
+          [23.095718, -109.709482],
+          [23.095128, -109.712605],
+          [23.101888, -109.713568],
+          [23.100607, -109.724033],
+          [23.105638, -109.724834],
+          [23.106431, -109.724777],
+          [23.106181, -109.726883],
+          [23.106225, -109.726985],
+          [23.106141, -109.727755],
+          [23.105699, -109.728259],
+          [23.105096, -109.73283],
+          [23.097669, -109.73172],
+          [23.097974, -109.729388],
+          [23.103841, -109.730378],
+          [23.104165, -109.728052],
+          [23.104165, -109.728052],
+          [23.100176, -109.727508],
+          [23.100345, -109.72604],
+          [23.096953, -109.725696],
+          [23.095011, -109.727111],
+          [23.093231, -109.727266],
+        ];
+
+        C2 = [
+          [23.058955, -109.694999],
+          [23.055861, -109.694556],
+          [23.054087, -109.703536],
+          [23.061349, -109.704006],
+          [23.063578, -109.702463],
+          [23.069867, -109.705073],
+          [23.072297, -109.705215],
+          [23.078638, -109.707602],
+          [23.090644, -109.70726],
+          [23.092949, -109.708787],
+          [23.095718, -109.709482],
+          [23.095128, -109.712605],
+          [23.105355, -109.714042],
+          [23.109772, -109.71347],
+          [23.109843, -109.712674],
+          [23.120027, -109.711655],
+          [23.120609, -109.716267],
+          [23.118988, -109.716419],
+          [23.119368, -109.718727],
+          [23.121166, -109.718656],
+          [23.12207, -109.72004],
+        ];
+
+        C3 = [
+          [23.058955, -109.694999],
+          [23.055861, -109.694556],
+          [23.054087, -109.703536],
+          [23.061349, -109.704006],
+          [23.063578, -109.702463],
+          [23.069867, -109.705073],
+          [23.072297, -109.705215],
+          [23.078638, -109.707602],
+          [23.090644, -109.70726],
+          [23.092949, -109.708787],
+          [23.095718, -109.709482],
+          [23.095128, -109.712605],
+          [23.105355, -109.714042],
+          [23.109772, -109.71347],
+          [23.109843, -109.712674],
+          [23.120027, -109.711655],
+          [23.120609, -109.716267],
+          [23.118988, -109.716419],
+          [23.119368, -109.718727],
+          [23.121166, -109.718656],
+          [23.12207, -109.72004],
+        ];
+
+        C4 = [
+          [23.058788, -109.694955],
+          [23.055805, -109.694505],
+          [23.054041, -109.703542],
+          [23.061492, -109.703975],
+          [23.063624, -109.702416],
+          [23.069997, -109.70517],
+          [23.072436, -109.705248],
+          [23.078544, -109.707626],
+          [23.090334, -109.707133],
+          [23.09306, -109.708979],
+          [23.102226, -109.71112],
+          [23.101894, -109.713612],
+          [23.10029, -109.713403],
+          [23.098686, -109.713207],
+          [23.096933, -109.725702],
+          [23.095068, -109.727059],
+          [23.093732, -109.727167],
+          [23.093564, -109.728706],
+          [23.096488, -109.729173],
+          [23.096182, -109.73145],
+          [23.106484, -109.733024],
+        ];
+
+        C5 = [
+          [23.105688, -109.740846],
+          [23.105802, -109.738115],
+          [23.116983, -109.738725],
+          [23.117989, -109.740978],
+          [23.117866, -109.742384],
+          [23.119766, -109.742255],
+          [23.119391, -109.737685],
+          [23.118448, -109.736676],
+          [23.118433, -109.734906],
+          [23.116282, -109.734777],
+          [23.115217, -109.724478],
+          [23.11274, -109.721506],
+          [23.09383, -109.718631],
+          [23.095779, -109.709703],
+          [23.092584, -109.70874],
+          [23.090817, -109.707334],
+          [23.078558, -109.707578],
+          [23.072272, -109.705272],
+          [23.069611, -109.705032],
+          [23.063838, -109.702621],
+          [23.06295, -109.700653],
+          [23.064223, -109.69642],
+          [23.063103, -109.693574],
+          [23.05865, -109.691998],
+          [23.058537, -109.693731],
+          [23.059159, -109.690609],
+          [23.059373, -109.680285],
+          [23.062932, -109.679792],
+          [23.064437, -109.679003],
+          [23.068257, -109.678556],
+          [23.069184, -109.676416],
+          [23.068651, -109.674962],
+          [23.067635, -109.675241],
+          [23.066791, -109.674404],
+          [23.065478, -109.674517],
+          [23.064935, -109.670488],
+          [23.062154, -109.672614],
+          [23.061582, -109.671954],
+          [23.06322, -109.667947],
+          [23.068067, -109.669186],
+          [23.068645, -109.666927],
+        ];
+
+        C6 = [
+          [23.115425, -109.738166],
+          [23.110275, -109.738324],
+          [23.10018, -109.737884],
+          [23.100999, -109.729494],
+          [23.10016, -109.727499],
+          [23.102232, -109.711277],
+          [23.092928, -109.708969],
+          [23.090352, -109.707209],
+          [23.078443, -109.707611],
+          [23.072182, -109.705219],
+          [23.069744, -109.705091],
+          [23.063506, -109.702528],
+          [23.06091, -109.704116],
+          [23.052546, -109.703688],
+          [23.04461, -109.706184],
+          [23.044166, -109.704124],
+        ];
+
+        C7 = [
+          [23.193893, -109.710751],
+          [23.191047, -109.709098],
+          [23.190293, -109.709291],
+          [23.185076, -109.706015],
+          [23.18155, -109.702835],
+          [23.177065, -109.701091],
+          [23.167782, -109.707063],
+          [23.109432, -109.712901],
+          [23.09294, -109.708826],
+          [23.090599, -109.707242],
+          [23.078452, -109.70754],
+          [23.072246, -109.705234],
+          [23.069573, -109.704999],
+          [23.063556, -109.702422],
+          [23.061159, -109.704059],
+          [23.054064, -109.703611],
+          [23.056054, -109.69356],
+          [23.054159, -109.693595],
+          [23.052668, -109.692441],
+          [23.048523, -109.691646],
+          [23.047478, -109.694693],
+          [23.04128, -109.704892],
+        ];
+
+        U1 = [
+          [23.164336, -109.708265],
+          [23.164219, -109.707494],
+          [23.153995, -109.708551],
+          [23.153797, -109.704785],
+          [23.150833, -109.704994],
+          [23.134152, -109.706668],
+          [23.134389, -109.709301],
+          [23.119943, -109.710398],
+          [23.120073, -109.711871],
+          [23.109826, -109.712885],
+          [23.109747, -109.713572],
+          [23.105327, -109.714062],
+          [23.086961, -109.711702],
+          [23.086596, -109.712936],
+          [23.082747, -109.713322],
+          [23.082017, -109.716186],
+          [23.074881, -109.716433],
+          [23.074288, -109.709883],
+          [23.07413, -109.713654],
+          [23.073528, -109.715382],
+          [23.072344, -109.716208],
+          [23.07072, -109.716106],
+          [23.072171, -109.709653],
+          [23.067236, -109.709004],
+          [23.06692, -109.706227],
+          [23.065714, -109.705863],
+          [23.064328, -109.706418],
+          [23.062116, -109.706288],
+          [23.058889, -109.70403],
+          [23.055774, -109.703782],
+          [23.05887, -109.703886],
+          [23.05889, -109.702318],
+          [23.059986, -109.694098],
+          [23.056092, -109.693419],
+          [23.054083, -109.69343],
+          [23.052908, -109.692507],
+          [23.048338, -109.691649],
+          [23.041193, -109.705048],
+        ];
+
+        U2 = [
+          [23.160759, -109.703415],
+          [23.159617, -109.705086],
+          [23.159491, -109.706105],
+          [23.137855, -109.708017],
+          [23.137649, -109.706257],
+          [23.134841, -109.706584],
+          [23.135176, -109.709185],
+          [23.119915, -109.710395],
+          [23.120076, -109.711875],
+          [23.10981, -109.712914],
+          [23.109775, -109.713551],
+          [23.108965, -109.713708],
+          [23.108458, -109.720238],
+          [23.089991, -109.717455],
+          [23.089863, -109.717806],
+          [23.08836, -109.71794],
+          [23.088821, -109.70727],
+          [23.080182, -109.707687],
+          [23.080224, -109.712795],
+          [23.078916, -109.713938],
+          [23.079114, -109.710598],
+          [23.069943, -109.709298],
+          [23.070057, -109.706586],
+          [23.065812, -109.705843],
+          [23.06434, -109.706433],
+          [23.062094, -109.706274],
+          [23.058871, -109.704033],
+          [23.0557, -109.703773],
+          [23.058844, -109.703899],
+          [23.06001, -109.694024],
+          [23.05609, -109.693387],
+          [23.054557, -109.693674],
+          [23.050619, -109.692007],
+          [23.048296, -109.691558],
+          [23.047531, -109.694644],
+          [23.040707, -109.705931],
+        ];
+
+        U3 = [
+          [23.113143, -109.73851],
+          [23.119572, -109.738737],
+          [23.119387, -109.737681],
+          [23.11846, -109.736796],
+          [23.118411, -109.734876],
+          [23.116249, -109.734782],
+          [23.115594, -109.726121],
+          [23.114006, -109.719901],
+          [23.114109, -109.715218],
+          [23.112616, -109.715375],
+          [23.112278, -109.712653],
+          [23.109788, -109.712909],
+          [23.109795, -109.713564],
+          [23.107863, -109.713864],
+          [23.106503, -109.723888],
+          [23.100753, -109.722956],
+          [23.100636, -109.723982],
+          [23.097282, -109.723406],
+          [23.097539, -109.721397],
+          [23.093357, -109.720743],
+          [23.095767, -109.709682],
+          [23.092931, -109.708954],
+          [23.091226, -109.707594],
+          [23.090339, -109.707261],
+          [23.078483, -109.707583],
+          [23.072322, -109.705345],
+          [23.069915, -109.705145],
+          [23.063765, -109.70258],
+          [23.061431, -109.703963],
+          [23.055748, -109.703791],
+          [23.058876, -109.703799],
+          [23.058912, -109.70228],
+          [23.059989, -109.693957],
+          [23.056863, -109.693344],
+          [23.054638, -109.693632],
+          [23.052884, -109.692489],
+          [23.048486, -109.691547],
+          [23.047564, -109.694603],
+          [23.04082, -109.70566],
+        ];
+
+        U4 = [
+          [23.16446, -109.708258],
+          [23.164218, -109.70741],
+          [23.159308, -109.708046],
+          [23.159499, -109.706104],
+          [23.137817, -109.707995],
+          [23.137657, -109.706275],
+          [23.134838, -109.706565],
+          [23.135385, -109.710388],
+          [23.109803, -109.71291],
+          [23.109759, -109.713567],
+          [23.105332, -109.714112],
+          [23.088543, -109.71184],
+          [23.088809, -109.707281],
+          [23.078416, -109.70763],
+          [23.072417, -109.705365],
+          [23.06948, -109.705024],
+          [23.063776, -109.702579],
+          [23.060911, -109.704096],
+          [23.055691, -109.703775],
+          [23.05887, -109.703857],
+          [23.059982, -109.694042],
+          [23.056107, -109.693406],
+          [23.054466, -109.693588],
+          [23.052703, -109.692428],
+          [23.04829, -109.691565],
+          [23.047494, -109.694664],
+          [23.041034, -109.705331],
+        ];
+
+        U5 = [
+          [23.105688, -109.740846],
+          [23.105802, -109.738115],
+          [23.116983, -109.738725],
+          [23.117989, -109.740978],
+          [23.117866, -109.742384],
+          [23.119766, -109.742255],
+          [23.119391, -109.737685],
+          [23.118448, -109.736676],
+          [23.118433, -109.734906],
+          [23.116282, -109.734777],
+          [23.115217, -109.724478],
+          [23.11274, -109.721506],
+          [23.09383, -109.718631],
+          [23.095779, -109.709703],
+          [23.092584, -109.70874],
+          [23.090817, -109.707334],
+          [23.078558, -109.707578],
+          [23.072272, -109.705272],
+          [23.069611, -109.705032],
+          [23.063838, -109.702621],
+          [23.06295, -109.700653],
+          [23.064223, -109.69642],
+          [23.063103, -109.693574],
+          [23.05865, -109.691998],
+          [23.058537, -109.693731],
+          [23.059159, -109.690609],
+          [23.059373, -109.680285],
+          [23.062932, -109.679792],
+          [23.064437, -109.679003],
+          [23.068257, -109.678556],
+          [23.069184, -109.676416],
+          [23.068651, -109.674962],
+          [23.067635, -109.675241],
+          [23.066791, -109.674404],
+          [23.065478, -109.674517],
+          [23.064935, -109.670488],
+          [23.062154, -109.672614],
+          [23.061582, -109.671954],
+          [23.06322, -109.667947],
+          [23.068067, -109.669186],
+          [23.068645, -109.666927],
+        ];
+
+        U6 = [
+          [23.076602, -109.706778],
+          [23.077524, -109.707171],
+          [23.077485, -109.708004],
+          [23.078038, -109.709361],
+          [23.078416, -109.708784],
+          [23.078893, -109.709889],
+          [23.078893, -109.709889],
+          [23.078859, -109.713751],
+          [23.079626, -109.716207],
+          [23.081156, -109.716116],
+          [23.08179, -109.728852],
+          [23.078903, -109.728971],
+          [23.078681, -109.724935],
+          [23.07684, -109.725064],
+          [23.076266, -109.721678],
+          [23.076014, -109.716598],
+          [23.074795, -109.71656],
+          [23.07438, -109.709992],
+          [23.074145, -109.709926],
+          [23.074149, -109.713667],
+          [23.073464, -109.714131],
+          [23.073516, -109.715408],
+          [23.072807, -109.715591],
+          [23.070054, -109.721827],
+          [23.069145, -109.721919],
+          [23.068064, -109.720358],
+          [23.068137, -109.71814],
+          [23.068721, -109.716082],
+          [23.068434, -109.716022],
+          [23.068788, -109.712015],
+          [23.068164, -109.711835],
+          [23.067243, -109.708932],
+          [23.069974, -109.709225],
+          [23.072074, -109.709587],
+          [23.0723, -109.706997],
+          [23.073498, -109.705635],
+          [23.068889, -109.704791],
+          [23.063608, -109.702434],
+          [23.062938, -109.700509],
+          [23.064247, -109.696388],
+          [23.063167, -109.693497],
+          [23.058814, -109.691879],
+          [23.058496, -109.693636],
+          [23.054166, -109.693608],
+          [23.052949, -109.692542],
+          [23.048294, -109.691532],
+          [23.047385, -109.694567],
+          [23.041379, -109.704714],
+        ];
+
+        U7 = [
+          [23.193893, -109.710751],
+          [23.191047, -109.709098],
+          [23.190293, -109.709291],
+          [23.185076, -109.706015],
+          [23.18155, -109.702835],
+          [23.177065, -109.701091],
+          [23.167782, -109.707063],
+          [23.109432, -109.712901],
+          [23.09294, -109.708826],
+          [23.090599, -109.707242],
+          [23.078452, -109.70754],
+          [23.072246, -109.705234],
+          [23.069573, -109.704999],
+          [23.063556, -109.702422],
+          [23.061159, -109.704059],
+          [23.054064, -109.703611],
+          [23.056054, -109.69356],
+          [23.054159, -109.693595],
+          [23.052668, -109.692441],
+          [23.048523, -109.691646],
+          [23.047478, -109.694693],
+          [23.04128, -109.704892],
+        ];
+
+        if (tipo == "colectivo" && ruta == "1") {
+          L.polyline(C1, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C1);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C1[0], { icon: iconoBASE })
+            .bindPopup(C1[0])
+            .addTo(map);
+          markerfinal = L.marker(C1[30], { icon: iconoBASE })
+            .bindPopup(C1[30])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "colectivo" && ruta == "2") {
+          L.polyline(C2, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C2);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C2[0], { icon: iconoBASE })
+            .bindPopup(C2[0])
+            .addTo(map);
+          markerfinal = L.marker(C2[20], { icon: iconoBASE })
+            .bindPopup(C2[20])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "colectivo" && ruta == "3") {
+          L.polyline(C3, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C3);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C3[0], { icon: iconoBASE })
+            .bindPopup(C3[0])
+            .addTo(map);
+          markerfinal = L.marker(C3[20], { icon: iconoBASE })
+            .bindPopup(C3[20])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "colectivo" && ruta == "4") {
+          L.polyline(C4, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C4);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C4[0], { icon: iconoBASE })
+            .bindPopup(C4[0])
+            .addTo(map);
+          markerfinal = L.marker(C4[20], { icon: iconoBASE })
+            .bindPopup(C4[20])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "colectivo" && ruta == "5") {
+          L.polyline(C5, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C5);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C5[0], { icon: iconoBASE })
+            .bindPopup(C5[0])
+            .addTo(map);
+          markerfinal = L.marker(C5[40], { icon: iconoBASE })
+            .bindPopup(C5[40])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "colectivo" && ruta == "6") {
+          L.polyline(C6, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C6);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C6[0], { icon: iconoBASE })
+            .bindPopup(C6[0])
+            .addTo(map);
+          markerfinal = L.marker(C6[15], { icon: iconoBASE })
+            .bindPopup(C6[15])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "colectivo" && ruta == "7") {
+          L.polyline(C7, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(C7);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(C7[0], { icon: iconoBASE })
+            .bindPopup(C7[0])
+            .addTo(map);
+          markerfinal = L.marker(C7[21], { icon: iconoBASE })
+            .bindPopup(C7[21])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "urbano" && ruta == "1") {
+          L.polyline(U1, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U1);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U1[0], { icon: iconoBASE })
+            .bindPopup(U1[0])
+            .addTo(map);
+          markerfinal = L.marker(U1[37], { icon: iconoBASE })
+            .bindPopup(U1[37])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+        if (tipo == "urbano" && ruta == "2") {
+          L.polyline(U2, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U2);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U2[0], { icon: iconoBASE })
+            .bindPopup(U2[0])
+            .addTo(map);
+          markerfinal = L.marker(U2[35], { icon: iconoBASE })
+            .bindPopup(U2[35])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "urbano" && ruta == "3") {
+          L.polyline(U3, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U3);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U3[0], { icon: iconoBASE })
+            .bindPopup(U3[0])
+            .addTo(map);
+          markerfinal = L.marker(U3[38], { icon: iconoBASE })
+            .bindPopup(U3[38])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "urbano" && ruta == "4") {
+          L.polyline(U4, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U4);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U4[0], { icon: iconoBASE })
+            .bindPopup(U4[0])
+            .addTo(map);
+          markerfinal = L.marker(U4[26], { icon: iconoBASE })
+            .bindPopup(U4[26])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "urbano" && ruta == "5") {
+          L.polyline(U5, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U5);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U5[0], { icon: iconoBASE })
+            .bindPopup(U5[0])
+            .addTo(map);
+          markerfinal = L.marker(U5[40], { icon: iconoBASE })
+            .bindPopup(U5[40])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "urbano" && ruta == "6") {
+          L.polyline(U6, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U6);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U6[0], { icon: iconoBASE })
+            .bindPopup(U6[0])
+            .addTo(map);
+          markerfinal = L.marker(U6[47], { icon: iconoBASE })
+            .bindPopup(U6[47])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+
+        if (tipo == "urbano" && ruta == "7") {
+          L.polyline(U7, { color: "#ff0000", weight: 4 }).addTo(map);
+          map.fitBounds(U7);
+
+          if (markerinicio) markerfinal.remove();
+
+          markerinicio = L.marker(U7[0], { icon: iconoBASE })
+            .bindPopup(U7[0])
+            .addTo(map);
+          markerfinal = L.marker(U7[21], { icon: iconoBASE })
+            .bindPopup(U7[21])
+            .addTo(map);
+          console.log("si imprime la ruta");
+        }
+      }
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>

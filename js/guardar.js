@@ -8,8 +8,8 @@ const valideRegisterForm = ()=>{
     $emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     $passwordRegex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/;
     $celularRegex = /^\d{7,14}$/;
-    $nombreRegex = /^([a-zA-Z])*$/;
-    $apellidoRegex = /^([a-zA-Z])*$/;
+    $nombreRegex = /^[a-zA-ZÀ-ÿñÑ]+( [a-zA-ZÀ-ÿñÑ]+)*$/;
+    $apellidoRegex = /^[a-zA-ZÀ-ÿñÑ]+( [a-zA-ZÀ-ÿñÑ]+)*$/;
 
     if($nombre == "" || $apellido == "" || $celular == "" || $correo == "" || $password == ""){
       Swal.fire({
@@ -121,7 +121,7 @@ const MSJOK =()=>{
     title: 'Genial',
     text: ' Los datos se introdujeron correctamente',
     showConfirmButton:false,
-    footer: '<a class="btn boton-color" href="./index.html">Iniciar sesión</a>'
+    footer: '<a class="btn boton-color" href="./principal.html">Regresar</a>'
   })
   
 }

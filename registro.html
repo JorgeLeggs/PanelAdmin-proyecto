@@ -11,15 +11,13 @@
     <link rel="stylesheet" href="./CSS/login.css" />
     <link rel="stylesheet" href="./CSS/style.css" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-
 
     <title>Registrate</title>
   </head>
   <body>
     <!---------------------------------------------boton regresar----------------------------------------------------->
     <div class="contenedor_boton">
-      <a class="p-3 offset-1 boton boton-color" href="./index.html">
+      <a class="p-3 offset-1 boton boton-color" href="./principal.html">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="icon icon-tabler icon-tabler-arrow-left"
@@ -136,7 +134,7 @@
                 minlength="6"
                 placeholder="Mínimo 6 caracteres, una mayuscula, una minuscula y un caracter"
                 required
-              />  
+              />
               <p id="registro_error" class="input_error">
                 Escribe una contraseña
               </p>
@@ -162,7 +160,7 @@
             </div>
           </div>
 
-          <input type="hidden" id="tipouser" name="tipouser" value="1">
+          <input type="hidden" id="tipouser" name="tipouser" value="1" />
 
           <div class="alerta">
             <p class="campo_alerta" id="campo_alerta">
@@ -170,11 +168,14 @@
               campos
             </p>
           </div>
-
-        
         </form>
         <div class="d-grid">
-          <button type="submit" id="btnregistro" class="btn boton-color" onclick="funcionesregistro()" >
+          <button
+            type="submit"
+            id="btnregistro"
+            class="btn boton-color"
+            onclick="funcionesregistro()"
+          >
             Registrarse
           </button>
         </div>
@@ -184,11 +185,8 @@
             <i class="fa-solid fa-check"></i> Registro exitoso
           </p>
         </div>
-
       </div>
     </div>
-    
-
 
     <!--Scripts de firebase-->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
@@ -199,23 +197,17 @@
     <!--Mis scripts-->
     <script src="./js/config.js"></script>
     <!--<script src="./js/Validacion_registro.js"></script>-->
-    
-    
+
     <script
       src="./recursos/bootstrap-js/bootstrap.min.js"
       crossorigin="anonymous"
     ></script>
-    
+
     <script
       src="https://kit.fontawesome.com/d3e350df82.js"
       crossorigin="anonymous"
     ></script>
 
-    
-    
     <script src="./js/guardar.js"></script>
-    
-
   </body>
-  
 </html>
